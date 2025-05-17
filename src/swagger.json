@@ -485,6 +485,333 @@
           }
         }
       }
+    },
+    "/order": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "orderRecord",
+            "in": "body",
+            "description": "Create a new order.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cliente": {
+                  "type": "string",
+                  "example": "João da Silva"
+                },
+                "itens": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "bookId": {
+                        "type": "number",
+                        "example": 2
+                      },
+                      "quantity": {
+                        "type": "number",
+                        "example": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Order created",
+            "schema": ""
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "List of orders",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number",
+                        "example": 1
+                      },
+                      "total": {
+                        "type": "number",
+                        "example": 360
+                      },
+                      "data": {
+                        "type": "string",
+                        "example": "2025-05-17T21:26:44.363Z"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "pendente"
+                      },
+                      "cliente": {
+                        "type": "string",
+                        "example": "João da Silva"
+                      },
+                      "itens": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": 2
+                            },
+                            "orderId": {
+                              "type": "number",
+                              "example": 1
+                            },
+                            "bookId": {
+                              "type": "number",
+                              "example": 1
+                            },
+                            "quantity": {
+                              "type": "number",
+                              "example": 5
+                            },
+                            "book": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number",
+                                  "example": 2
+                                },
+                                "titulo": {
+                                  "type": "string",
+                                  "example": "Elden Ring"
+                                },
+                                "autor": {
+                                  "type": "string",
+                                  "example": "Guilhermo Del Toro"
+                                },
+                                "descricao": {
+                                  "type": "string",
+                                  "example": "Fantasia"
+                                },
+                                "preco": {
+                                  "type": "number",
+                                  "example": 60
+                                },
+                                "imagem": {
+                                  "type": "string",
+                                  "example": "http://image.com"
+                                },
+                                "estoque": {
+                                  "type": "number",
+                                  "example": 0
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "number",
+                        "example": 1
+                      },
+                      "total": {
+                        "type": "number",
+                        "example": 360
+                      },
+                      "data": {
+                        "type": "string",
+                        "example": "2025-05-17T21:26:44.363Z"
+                      },
+                      "status": {
+                        "type": "string",
+                        "example": "pendente"
+                      },
+                      "cliente": {
+                        "type": "string",
+                        "example": "João da Silva"
+                      },
+                      "itens": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": 2
+                            },
+                            "orderId": {
+                              "type": "number",
+                              "example": 1
+                            },
+                            "bookId": {
+                              "type": "number",
+                              "example": 1
+                            },
+                            "quantity": {
+                              "type": "number",
+                              "example": 5
+                            },
+                            "book": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number",
+                                  "example": 2
+                                },
+                                "titulo": {
+                                  "type": "string",
+                                  "example": "Elden Ring"
+                                },
+                                "autor": {
+                                  "type": "string",
+                                  "example": "Guilhermo Del Toro"
+                                },
+                                "descricao": {
+                                  "type": "string",
+                                  "example": "Fantasia"
+                                },
+                                "preco": {
+                                  "type": "number",
+                                  "example": 60
+                                },
+                                "imagem": {
+                                  "type": "string",
+                                  "example": "http://image.com"
+                                },
+                                "estoque": {
+                                  "type": "number",
+                                  "example": 0
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "number",
+                    "example": 1
+                  },
+                  "total": {
+                    "type": "number",
+                    "example": 360
+                  },
+                  "data": {
+                    "type": "string",
+                    "example": "2025-05-17T21:26:44.363Z"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "pendente"
+                  },
+                  "cliente": {
+                    "type": "string",
+                    "example": "João da Silva"
+                  },
+                  "itens": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number",
+                          "example": 2
+                        },
+                        "orderId": {
+                          "type": "number",
+                          "example": 1
+                        },
+                        "bookId": {
+                          "type": "number",
+                          "example": 1
+                        },
+                        "quantity": {
+                          "type": "number",
+                          "example": 5
+                        },
+                        "book": {
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "type": "number",
+                              "example": 2
+                            },
+                            "titulo": {
+                              "type": "string",
+                              "example": "Elden Ring"
+                            },
+                            "autor": {
+                              "type": "string",
+                              "example": "Guilhermo Del Toro"
+                            },
+                            "descricao": {
+                              "type": "string",
+                              "example": "Fantasia"
+                            },
+                            "preco": {
+                              "type": "number",
+                              "example": 60
+                            },
+                            "imagem": {
+                              "type": "string",
+                              "example": "http://image.com"
+                            },
+                            "estoque": {
+                              "type": "number",
+                              "example": 0
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

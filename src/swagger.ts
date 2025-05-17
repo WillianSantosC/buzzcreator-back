@@ -11,7 +11,10 @@ const options = {
 const swaggerAutogen = require("swagger-autogen")(options);
 
 const outputFile = "./swagger.json";
-const endpointsFiles = ["./web/routes/bookRoutes.ts"];
+const endpointsFiles = [
+  "./web/routes/bookRoutes.ts",
+  "./web/routes/orderRoutes.ts",
+];
 
 const doc = {
   info: {
