@@ -5,9 +5,9 @@ export const bookSchema = {
     titulo: z.string(),
     autor: z.string(),
     descricao: z.string(),
-    preco: z.number(),
-    imagem: z.string(),
-    estoque: z.number(),
+    preco: z.number().int().positive("O preco deve ser maior que zero"),
+    imagem: z.string().url("A imagem deve ser uma URL"),
+    estoque: z.number().int().positive("O estoque deve ser maior que zero"),
   }),
 
   update: z.object({
@@ -15,14 +15,12 @@ export const bookSchema = {
     titulo: z.string().optional(),
     autor: z.string().optional(),
     descricao: z.string().optional(),
-    preco: z.number().optional(),
-    imagem: z.string().optional(),
-    estoque: z.number().optional(),
+    preco: z.number().int().positive("O preco deve ser maior que zero"),
+    imagem: z.string().url("A imagem deve ser uma URL"),
+    estoque: z.number().int().positive("O estoque deve ser maior que zero"),
   }),
 
   delete: z.object({
     id: z.string(),
   }),
-
-  list: z.object({}),
 };
