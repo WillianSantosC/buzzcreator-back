@@ -21,4 +21,38 @@ model Book {
   preco     Int
   imagem    String
   estoque   Int
+
+  itens OrderItem[]
+
+  @@map("books")
+}
+
+model Order {
+  id      Int         @id @default(autoincrement())
+  itens   OrderItem[]
+  total   Float
+  data    DateTime    @default(now())
+  status  OrderStatus
+  cliente String
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id      Int   @id @default(autoincrement())
+  order   Order @relation(fields: [orderId], references: [id])
+  orderId Int
+
+  book   Book @relation(fields: [bookId], references: [id])
+  bookId Int
+
+  quantity Int
+
+  @@map("order_items")
+}
+
+enum OrderStatus {
+  pendente
+  pago
+  cancelado
 }
