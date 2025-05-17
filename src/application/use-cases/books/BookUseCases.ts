@@ -12,6 +12,10 @@ export class BookUseCases {
     return this.bookRepository.findAll();
   }
 
+  findOne(id: number): Promise<Book> {
+    return this.bookRepository.findOne(id);
+  }
+
   update(id: number, data: Partial<Book>): Promise<Book> {
     return this.bookRepository.update(id, data);
   }

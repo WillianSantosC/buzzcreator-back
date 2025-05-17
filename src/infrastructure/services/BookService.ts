@@ -11,6 +11,10 @@ export class BookService implements BookRepository {
     return await prisma.book.findMany();
   }
 
+  async findOne(id: number): Promise<Book> {
+    return await prisma.book.findUnique({ where: { id } });
+  }
+
   async update(id: number, data: Partial<Book>): Promise<Book> {
     return await prisma.book.update({ where: { id }, data });
   }
