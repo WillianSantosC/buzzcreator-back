@@ -13,4 +13,35 @@ export class BookController {
       next(err);
     }
   }
+
+  async list(_: Request, res: Response, next: NextFunction) {
+    try {
+      const books = await bookUseCases.list();
+      res.json(books);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async update(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+
+      const book = await bookUseCases.update(Number(id), req.body);
+      res.json(book);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async delete(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { id } = req.params;
+
+      await bookUseCases.delete(Number(id));
+      res.status(204).send();
+    } catch (err) {
+      next(err);
+    }
+  }
 }

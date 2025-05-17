@@ -7,4 +7,16 @@ export class BookUseCases {
   create(book: Omit<Book, "id">): Promise<Book> {
     return this.bookRepository.create(book);
   }
+
+  list(): Promise<Book[]> {
+    return this.bookRepository.findAll();
+  }
+
+  update(id: number, data: Partial<Book>): Promise<Book> {
+    return this.bookRepository.update(id, data);
+  }
+
+  delete(id: number): Promise<void> {
+    return this.bookRepository.delete(id);
+  }
 }

@@ -10,9 +10,19 @@ export const bookSchema = {
     estoque: z.number(),
   }),
 
-  update: z.object({}),
+  update: z.object({
+    id: z.string(),
+    titulo: z.string().optional(),
+    autor: z.string().optional(),
+    descricao: z.string().optional(),
+    preco: z.number().optional(),
+    imagem: z.string().optional(),
+    estoque: z.number().optional(),
+  }),
 
-  retrieve: z.object({}),
+  delete: z.object({
+    id: z.string(),
+  }),
 
-  delete: z.object({}),
+  list: z.object({}),
 };
