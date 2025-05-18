@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only --exit-child src/server.ts",
+    "start": "node dist/server.js",
     "migrate": "prisma migrate dev",
     "studio": "prisma studio",
     "build": "tsc",
