@@ -3,6 +3,10 @@ FROM node:22-slim AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
+
+RUN apt-get update -y \
+&& apt-get install -y openssl
+
 WORKDIR /app
 COPY . .
 
@@ -20,5 +24,3 @@ COPY --from=build /app/dist /app/dist
 RUN pnpm prisma generate
 
 EXPOSE 3000
-
-CMD ["pnpm", "start"]
