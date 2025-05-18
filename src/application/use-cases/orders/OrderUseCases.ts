@@ -14,27 +14,21 @@ export class OrderUseCases {
   ) {}
 
   async create({ itens, cliente }: CreateOrderInput): Promise<Order> {
+    const books = await Promise.all(
+      itens.map((item) => this.bookRepo.findOne(item.bookId)),
+    );
+
     let total = 0;
-    const orderItemsData = [];
+    books.forEach((book, index) => {
+      const item = itens[index];
+      if (!book) throw new Error(`Livro ${item.bookId} não encontrado.`);
+      total += book.preco * item.quantidade;
+    });
 
-    for (const item of itens) {
-      const book = await this.bookRepo.findOne(item.bookId);
-
-      if (!book || book.estoque < item.quantity) {
-        throw new Error(`Livro ${item.bookId} sem estoque suficiente.`);
-      }
-
-      total += book.preco * item.quantity;
-
-      await this.bookRepo.update(book.id, {
-        estoque: book.estoque - item.quantity,
-      });
-
-      orderItemsData.push({
-        book: { connect: { id: book.id } },
-        quantity: item.quantity,
-      });
-    }
+    const orderItemsData = itens.map((item) => ({
+      book: { connect: { id: item.bookId } },
+      quantidade: item.quantidade,
+    }));
 
     return await this.orderRepo.create({
       cliente,
@@ -44,7 +38,56 @@ export class OrderUseCases {
     });
   }
 
-  async list(): Promise<Order[]> {
-    return await this.orderRepo.findAll();
+  list(): Promise<Order[]> {
+    return this.orderRepo.findAll();
+  }
+
+  async updateStatus(
+    orderId: number,
+    status: "pago" | "cancelado",
+  ): Promise<void> {
+    const order = await this.orderRepo.findById(orderId);
+    if (!order) throw new Error("Pedido não encontrado");
+
+    if (order.status === "pago" || order.status === "cancelado") {
+      throw new Error("Pedido ja foi pago ou cancelado");
+    }
+
+    if (status === "cancelado") {
+      await this.orderRepo.update(orderId, { status });
+      return;
+    }
+
+    if (status === "pago") {
+      const books = await Promise.all(
+        order.itens.map((item) => this.bookRepo.findOne(item.bookId)),
+      );
+
+      books.forEach((book, index) => {
+        const item = order.itens[index];
+        if (!book || book.estoque < item.quantidade) {
+          throw new Error(`Livro ${item.bookId} sem estoque suficiente.`);
+        }
+      });
+
+      await Promise.all(
+        books.map((book, index) => {
+          const item = order.itens[index];
+          if (book) {
+            return this.bookRepo.update(book.id, {
+              estoque: book.estoque - item.quantidade,
+            });
+          }
+        }),
+      );
+
+      await this.orderRepo.update(orderId, {
+        status: "pago",
+      });
+
+      return;
+    }
+
+    throw new Error("Status inválido");
   }
 }

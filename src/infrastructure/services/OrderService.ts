@@ -16,6 +16,19 @@ export class OrderService implements OrderRepository {
     });
   }
 
+  async findById(id: number): Promise<Order | null> {
+    return await prisma.order.findUnique({
+      where: { id },
+      include: {
+        itens: {
+          include: {
+            book: true,
+          },
+        },
+      },
+    });
+  }
+
   async create(data: Prisma.OrderCreateInput): Promise<Order> {
     return await prisma.order.create({
       data,
@@ -26,6 +39,13 @@ export class OrderService implements OrderRepository {
           },
         },
       },
+    });
+  }
+
+  async update(id: number, data: Pick<Order, "status">): Promise<void> {
+    await prisma.order.update({
+      where: { id },
+      data,
     });
   }
 }

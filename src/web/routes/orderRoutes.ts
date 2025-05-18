@@ -80,4 +80,23 @@ export function routes(app: Router) {
                 ]
         } */
   });
+
+  app.put(
+    "/order/:id",
+    wrapValidation(orderController.update, orderSchema.update),
+    () => {
+      // #swagger.tags = ["Order"]
+      /*  #swagger.parameters['orderRecord'] = {
+                in: 'body',
+                description: 'Update an order.',
+                schema: {
+                          status: 'pago'
+                      }
+        } */
+      /* #swagger.responses[200] = {
+            description: 'Order updated',
+            schema: ''
+        } */
+    },
+  );
 }

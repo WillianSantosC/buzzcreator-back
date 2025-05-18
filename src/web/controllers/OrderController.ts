@@ -23,4 +23,13 @@ export class OrderController {
       res.status(500).json({ error: e.message });
     }
   }
+
+  async update(req: Request, res: Response) {
+    try {
+      await orderUseCases.updateStatus(Number(req.params.id), req.body.status);
+      res.status(200).json({ message: "Order updated" });
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
+  }
 }

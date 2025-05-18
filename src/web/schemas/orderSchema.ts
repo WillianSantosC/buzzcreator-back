@@ -15,4 +15,9 @@ export const orderSchema = {
       )
       .min(1, "O pedido deve conter ao menos um item"),
   }),
+
+  update: z.object({
+    id: z.string(),
+    status: z.enum(["pago", "cancelado"]),
+  }),
 };
