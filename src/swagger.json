@@ -513,7 +513,7 @@
                         "type": "number",
                         "example": 2
                       },
-                      "quantity": {
+                      "quantidade": {
                         "type": "number",
                         "example": 1
                       }
@@ -583,7 +583,7 @@
                               "type": "number",
                               "example": 1
                             },
-                            "quantity": {
+                            "quantidade": {
                               "type": "number",
                               "example": 5
                             },
@@ -673,7 +673,7 @@
                               "type": "number",
                               "example": 1
                             },
-                            "quantity": {
+                            "quantidade": {
                               "type": "number",
                               "example": 5
                             },
@@ -763,7 +763,7 @@
                           "type": "number",
                           "example": 1
                         },
-                        "quantity": {
+                        "quantidade": {
                           "type": "number",
                           "example": 5
                         },
@@ -809,6 +809,44 @@
                 "name": "main"
               }
             }
+          }
+        }
+      }
+    },
+    "/order/{id}": {
+      "put": {
+        "tags": [
+          "Order"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "orderRecord",
+            "in": "body",
+            "description": "Update an order.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "example": "pago"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Order updated",
+            "schema": ""
           }
         }
       }
