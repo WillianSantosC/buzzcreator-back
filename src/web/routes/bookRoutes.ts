@@ -1,11 +1,13 @@
 import { Router } from "express";
 import { bookController } from "../controllers/_index";
+import { authGuard } from "../middlewares/authGuard";
 import wrapValidation from "../middlewares/validateRoutes";
 import { bookSchema } from "../schemas/bookSchema";
 
 export function routes(app: Router) {
   app.post(
     "/book",
+    authGuard(["admin"]),
     wrapValidation(bookController.create, bookSchema.create),
     () => {
       // #swagger.tags = ["Book"]
@@ -65,6 +67,7 @@ export function routes(app: Router) {
 
   app.patch(
     "/book/:id",
+    authGuard(["admin"]),
     wrapValidation(bookController.update, bookSchema.update),
     () => {
       // #swagger.tags = ["Book"]
@@ -93,6 +96,7 @@ export function routes(app: Router) {
 
   app.delete(
     "/book/:id",
+    authGuard(["admin"]),
     wrapValidation(bookController.delete, bookSchema.delete),
     () => {
       // #swagger.tags = ["Book"]
