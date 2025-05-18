@@ -11,6 +11,7 @@
     "swagger": "node src/swagger.ts",
     "lint": "eslint .",
     "prepare": "husky && prisma generate",
+    "postinstall": "prisma generate && prisma migrate deploy",
     "test": "jest --passWithNoTests --maxWorkers=50%",
     "test:watch": "jest --watch --maxWorkers=25%",
     "test:ci": "jest --runInBand"
