@@ -23,6 +23,12 @@ export function routes(app: Router) {
                     token: 'token'
                 }
         } */
+      /* #swagger.responses[401] = {
+            description: 'Invalid credentials',
+            schema: {
+                    error: 'Credenciais inválidas'
+                }
+        } */
     },
   );
 }

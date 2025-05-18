@@ -54,6 +54,13 @@
                 }
               }
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -173,6 +180,12 @@
                 "name": "main"
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         }
       },
@@ -340,6 +353,13 @@
                 }
               }
             }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -459,6 +479,12 @@
                 "name": "main"
               }
             }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         }
       },
@@ -476,12 +502,25 @@
               "type": "string"
             },
             "description": "Book ID"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "204": {
             "description": "Book deleted",
             "schema": ""
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         }
       }
@@ -847,6 +886,126 @@
           "200": {
             "description": "Order updated",
             "schema": ""
+          }
+        }
+      }
+    },
+    "/admin/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "authRecord",
+            "in": "body",
+            "description": "Login admin.",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "admin"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "admin123"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Admin logged in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "token"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "token"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "example": "token"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Credenciais inválidas"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string",
+                      "example": "Credenciais inválidas"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            },
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "string",
+                  "example": "Credenciais inválidas"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       }
