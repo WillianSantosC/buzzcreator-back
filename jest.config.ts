@@ -8,15 +8,18 @@ const config: Config = {
   coverageDirectory: "coverage",
   coveragePathIgnorePatterns: ["/node_modules/"],
   testPathIgnorePatterns: ["/node_modules/", "/.next/"],
+  setupFilesAfterEnv: ["./src/tests/setup.ts"],
   coverageProvider: "v8",
   collectCoverageFrom: [
     "src/**/*.{js,jsx,ts,tsx}",
-    "!src/middlewares/**",
-    "!src/schemas/**",
-    "!src/exceptions/**",
-    "!src/types/**",
+    "!src/web/middlewares/**",
+    "!src/web/schemas/**",
+    "!src/domain/**",
+    "!src/@types/**",
     "!src/swagger.json",
     "!src/swagger.ts",
+    "!src/app.ts",
+    "!src/server.ts",
   ],
 };
 

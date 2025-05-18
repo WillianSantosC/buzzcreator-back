@@ -8,8 +8,8 @@ const orderUseCases = new OrderUseCases(new OrderService(), new BookService());
 export class OrderController {
   async create(req: Request, res: Response) {
     try {
-      await orderUseCases.create(req.body);
-      res.status(201).json({ message: "Order created" });
+      const order = await orderUseCases.create(req.body);
+      res.status(201).json(order);
     } catch (e) {
       res.status(500).json({ error: e.message });
     }
