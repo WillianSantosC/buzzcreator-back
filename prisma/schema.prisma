@@ -46,7 +46,7 @@ model OrderItem {
   book   Book @relation(fields: [bookId], references: [id])
   bookId Int
 
-  quantity Int
+  quantidade Int
 
   @@map("order_items")
 }

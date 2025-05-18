@@ -1,6 +1,6 @@
 export interface OrderItem {
   bookId: number;
-  quantity: number;
+  quantidade: number;
 }
 
 export interface Order {

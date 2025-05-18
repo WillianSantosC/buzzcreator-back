@@ -7,7 +7,7 @@ export const orderSchema = {
       .array(
         z.object({
           bookId: z.number().min(1, "ID do livro é obrigatório"),
-          quantity: z
+          quantidade: z
             .number()
             .int()
             .positive("A quantidade deve ser maior que zero"),

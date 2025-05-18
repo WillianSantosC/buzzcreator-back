@@ -17,11 +17,11 @@ export function routes(app: Router) {
                           itens: [
                             {
                               bookId: 1,
-                              quantity: 5
+                              quantidade: 5
                             },
                             {
                               bookId: 2,
-                              quantity: 1
+                              quantidade: 1
                             }
                           ]
                       }
@@ -49,7 +49,7 @@ export function routes(app: Router) {
                                   id: 1,
                                   orderId: 1,
                                   bookId: 2,
-                                  quantity: 1,
+                                  quantidade: 1,
                                   book: {
                                       id: 1,
                                       titulo: 'House of the Dragons',
@@ -64,7 +64,7 @@ export function routes(app: Router) {
                                   id: 2,
                                   orderId: 1,
                                   bookId: 1,
-                                  quantity: 5,
+                                  quantidade: 5,
                                   book: {
                                       id: 2,
                                       titulo: 'Elden Ring',
