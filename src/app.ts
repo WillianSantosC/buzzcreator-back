@@ -1,3 +1,4 @@
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import { configDotenv } from "dotenv";
 import express, {
@@ -59,7 +60,15 @@ class App {
 
   private setConfig() {
     //Enables cors
-    this.app.use(cors());
+    this.app.use(
+      cors({
+        origin: "http://localhost:3000",
+        credentials: true,
+      }),
+    );
+
+    //Allows us to receive cookies
+    this.app.use(cookieParser());
 
     //Allows us to receive requests with data in json format
     this.app.use(express.json({ limit: "50mb" }));
