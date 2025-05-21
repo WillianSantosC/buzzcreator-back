@@ -20,9 +20,8 @@ export function authGuard(allowedRoles?: string[]) {
       : cookieToken;
 
     if (!token) {
-      return res
-        .status(401)
-        .json({ error: "Token não fornecido ou mal formatado" });
+      res.status(401).json({ error: "Token não fornecido ou mal formatado" });
+      return;
     }
 
     try {
@@ -30,14 +29,15 @@ export function authGuard(allowedRoles?: string[]) {
       req.user = decoded;
 
       if (allowedRoles && !allowedRoles.includes(decoded.role ?? "")) {
-        return res
+        res
           .status(403)
           .json({ error: "Acesso negado: permissões insuficientes" });
+        return;
       }
 
       next();
     } catch {
-      return res.status(401).json({ error: "Token inválido ou expirado" });
+      res.status(401).json({ error: "Token inválido ou expirado" });
     }
   };
 }
