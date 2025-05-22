@@ -7,8 +7,6 @@ export class AuthController {
     try {
       const { username, password } = req.body;
 
-      console.log(username, password);
-
       if (username === "admin" && password === "admin123") {
         const token = jwt.sign({ role: "admin", username }, SECRET_KEY, {
           expiresIn: "1h",
@@ -16,8 +14,8 @@ export class AuthController {
 
         res.cookie("session", token, {
           httpOnly: true,
-          secure: process.env.NODE_ENV === "production",
-          sameSite: "lax",
+          secure: true,
+          sameSite: "none",
           maxAge: 3600 * 1000, // 1 hora
         });
 
