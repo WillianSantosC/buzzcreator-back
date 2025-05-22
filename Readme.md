@@ -4,6 +4,12 @@ BuzzCreator é uma API RESTful desenvolvida em Node.js com TypeScript, Express e
 
 ---
 
+## Front-End
+
+Este back-end pode ser usado em conjunto com o front-end disponível no repositório: **[buzzcreator-front](https://github.com/WillianSantosC/buzzcreator-front)**
+
+---
+
 ## Funcionalidades
 
 - CRUD de livros (`Books`)
@@ -17,14 +23,49 @@ BuzzCreator é uma API RESTful desenvolvida em Node.js com TypeScript, Express e
 
 ## Tecnologias Utilizadas
 
-- **Node.js** + **TypeScript**
-- **Express**
-- **Prisma ORM**
-- **PostgreSQL** (produção)
-- **Swagger**
-- **Jest** + **Supertest**
-- **Docker** (opcional)
+- **Node.js** + **Express** + **TypeScript** (framework e tipagem)
+- **Prisma ORM** (ORM)
+- **PostgreSQL** (banco de dados)
+- **Swagger** (documentação)
+- **ESLint** + **Prettier** (padronização de código)
+- **Jest** + **Supertest** (testes)
+- **Docker** (rodar projeto - opcional)
 - **Render** (deploy)
+- **Husky** + **Lint-staged** (validação pre-commit)
+- **Github Actions** (CI/CD)
+
+---
+
+## Arquitetura e Decisões Técnicas
+
+- **Arquitetura**: Adotada a **Clean Architecture** como base para a organização do projeto, separando claramente as responsabilidades em camadas:
+
+  - **Domain**: definição das entidades e repositórios.
+  - **Application**: casos de uso que orquestram a lógica da aplicação.
+  - **Infrastructure**: integração com tecnologias externas como banco de dados e frameworks.
+  - **Web**: camada de entrega responsável pelas rotas HTTP e validações das mesmas.
+
+    > Essa abordagem facilita a manutenção, escalabilidade e testabilidade do sistema, além de reduzir o acoplamento entre as partes.
+
+* **Framework**: Optou-se por **Express.js**, um framework minimalista e flexível para construção de APIs REST, facilitando a implementação de rotas, middlewares e integração com bibliotecas de terceiros.
+
+* **Tipagem**: Uso de **TypeScript** em toda a base de código para proporcionar maior segurança, clareza e escalabilidade, reduzindo a incidência de erros em tempo de execução.
+
+* **ORM**: Utilizado **Prisma** para o mapeamento objeto-relacional, oferecendo uma camada de abstração segura e tipada sobre o banco de dados, além de facilitar operações como migrações e geração automática de tipos.
+
+* **Banco de Dados**: Escolha por **PostgreSQL**, um sistema robusto e confiável para armazenamento relacional, garantindo integridade e escalabilidade dos dados.
+
+* **Autenticação**: Implementada autenticação via **JWT (JSON Web Token)** para rotas protegidas. Para fins de simplicidade e foco na lógica do sistema, a autenticação do administrador foi mockada; em produção, seria substituída por um sistema robusto com persistência, hashing de senha e repositório.
+
+* **Validação de Dados**: Emprego de **Zod** para validação de schemas, garantindo que os dados recebidos e processados pela API estejam sempre no formato esperado, evitando falhas e inconsistências.
+
+* **Documentação de API**: Geração automática da documentação utilizando **Swagger**, facilitando o entendimento, a integração e os testes da API por outros desenvolvedores ou serviços.
+
+* **Testes**: Estratégia de testes baseada em **Jest** e **Supertest** para testes de integração, garantindo que as rotas e a lógica de negócios funcionem conforme o esperado. O ambiente de testes utiliza truncamento das tabelas antes de cada suíte, garantindo isolamento entre os testes.
+
+* **Padronização de Código**: Utilização de **ESLint**, **Prettier** e **Husky** para garantir a qualidade, consistência e padronização do código, além de hooks de pre-commit com **Lint-staged** para validação automática antes de cada commit.
+
+* **Deploy**: Realizado via **Render**, aproveitando o suporte a containers e aplicações Node.js.
 
 ---
 
@@ -40,7 +81,7 @@ pnpm build
 # Rodar a aplicação compilada
 pnpm start
 
-# Rodar Swagger
+# Rodar Swagger para atualizar a documentação
 pnpm swagger
 
 # Rodar testes
@@ -56,7 +97,7 @@ pnpm studio
 
 ### Pré-requisitos
 
-- Node.js 18+
+- Node.js 22+
 - PNPM (recomendado)
 - PostgreSQL local ou Docker
 - Docker (opcional)
