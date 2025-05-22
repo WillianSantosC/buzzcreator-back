@@ -12,13 +12,6 @@ export class AuthController {
           expiresIn: "1h",
         });
 
-        res.cookie("session", token, {
-          httpOnly: true,
-          secure: true,
-          sameSite: "none",
-          maxAge: 3600 * 1000, // 1 hora
-        });
-
         return res.json({ token });
       }
 
