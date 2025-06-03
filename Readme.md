@@ -1,108 +1,111 @@
 # BuzzCreator
 
-BuzzCreator é uma API RESTful desenvolvida em Node.js com TypeScript, Express e Prisma. O sistema tem como objetivo gerenciar um catálogo de livros e pedidos, com autenticação de administrador para rotas protegidas.
+BuzzCreator is a RESTful API developed with Node.js, TypeScript, Express, and Prisma. The system aims to manage a catalog of books and orders, with admin authentication for protected routes.
 
 ---
 
 ## Front-End
 
-Este back-end pode ser usado em conjunto com o front-end disponível no repositório: **[buzzcreator-front](https://github.com/WillianSantosC/buzzcreator-front)**
+This back-end can be used together with the front-end available in the repository: **[buzzcreator-front](https://github.com/WillianSantosC/buzzcreator-front)**
 
 ---
 
-## Funcionalidades
+## Features
 
-- CRUD de livros (`Books`)
-- Gerenciamento de pedidos (`Orders`)
-- Autenticação básica de administrador
-- Validação de dados com Zod
-- Documentação automática com Swagger
-- Testes de integração com Jest e Supertest
+- CRUD for books (`Books`)
+- Order management (`Orders`)
+- Basic admin authentication
+- Data validation with Zod
+- Automatic documentation with Swagger
+- Integration tests with Jest and Supertest
 
 ---
 
-## Tecnologias Utilizadas
+## Technologies Used
 
-- **Node.js** + **Express** + **TypeScript** (framework e tipagem)
+- **Node.js** + **Express** + **TypeScript** (framework and typing)
 - **Prisma ORM** (ORM)
-- **PostgreSQL** (banco de dados)
-- **Swagger** (documentação)
-- **ESLint** + **Prettier** (padronização de código)
-- **Jest** + **Supertest** (testes)
-- **Docker** (rodar projeto - opcional)
+- **PostgreSQL** (database)
+- **Swagger** (documentation)
+- **ESLint** + **Prettier** (code standardization)
+- **Jest** + **Supertest** (testing)
+- **Docker** (run project - optional)
 - **Render** (deploy)
-- **Husky** + **Lint-staged** (validação pre-commit)
-- **Github Actions** (CI/CD)
+- **Husky** + **Lint-staged** (pre-commit validation)
+- **GitHub Actions** (CI/CD)
 
 ---
 
-## Arquitetura e Decisões Técnicas
+## Architecture and Technical Decisions
 
-- **Arquitetura**: Adotada a **Clean Architecture** como base para a organização do projeto, separando claramente as responsabilidades em camadas:
+- **Architecture**: The project follows **Clean Architecture** as a base for organization, clearly separating responsibilities into layers:
 
-  - **Domain**: definição das entidades e repositórios.
-  - **Application**: casos de uso que orquestram a lógica da aplicação.
-  - **Infrastructure**: integração com tecnologias externas como banco de dados e frameworks.
-  - **Web**: camada de entrega responsável pelas rotas HTTP e validações das mesmas.
+  - **Domain**: definition of entities and repositories.
 
-    > Essa abordagem facilita a manutenção, escalabilidade e testabilidade do sistema, além de reduzir o acoplamento entre as partes.
+  - **Application**: use cases that orchestrate business logic.
 
-* **Framework**: Optou-se por **Express.js**, um framework minimalista e flexível para construção de APIs REST, facilitando a implementação de rotas, middlewares e integração com bibliotecas de terceiros.
+  - **Infrastructure**: integration with external technologies such as databases and frameworks.
 
-* **Tipagem**: Uso de **TypeScript** em toda a base de código para proporcionar maior segurança, clareza e escalabilidade, reduzindo a incidência de erros em tempo de execução.
+  - **Web**: delivery layer responsible for HTTP routes and their validations.
 
-* **ORM**: Utilizado **Prisma** para o mapeamento objeto-relacional, oferecendo uma camada de abstração segura e tipada sobre o banco de dados, além de facilitar operações como migrações e geração automática de tipos.
+  > This approach facilitates maintenance, scalability, and testability of the system, while reducing coupling between parts.
 
-* **Banco de Dados**: Escolha por **PostgreSQL**, um sistema robusto e confiável para armazenamento relacional, garantindo integridade e escalabilidade dos dados.
+* **Framework**: **Express.js** was chosen, a minimalist and flexible framework for building REST APIs, making it easier to implement routes, middlewares, and integrate third-party libraries.
 
-* **Autenticação**: Implementada autenticação via **JWT (JSON Web Token)** para rotas protegidas. Para fins de simplicidade e foco na lógica do sistema, a autenticação do administrador foi mockada; em produção, seria substituída por um sistema robusto com persistência, hashing de senha e repositório.
+* **Typing**: The entire codebase uses **TypeScript** to provide greater safety, clarity, and scalability, reducing runtime errors.
 
-* **Validação de Dados**: Emprego de **Zod** para validação de schemas, garantindo que os dados recebidos e processados pela API estejam sempre no formato esperado, evitando falhas e inconsistências.
+* **ORM**: **Prisma** is used for object-relational mapping, offering a safe, type-safe abstraction layer over the database and simplifying operations like migrations and automatic type generation.
 
-* **Documentação de API**: Geração automática da documentação utilizando **Swagger**, facilitando o entendimento, a integração e os testes da API por outros desenvolvedores ou serviços.
+* **Database**: **PostgreSQL** was chosen as a robust and reliable relational storage system, ensuring data integrity and scalability.
 
-* **Testes**: Estratégia de testes baseada em **Jest** e **Supertest** para testes de integração, garantindo que as rotas e a lógica de negócios funcionem conforme o esperado. O ambiente de testes utiliza truncamento das tabelas antes de cada suíte, garantindo isolamento entre os testes.
+* **Authentication**: Authentication is implemented via **JWT (JSON Web Token)** for protected routes. For simplicity and focus on core system logic, admin authentication is mocked; in production, it would be replaced by a robust system with persistence, password hashing, and a repository.
 
-* **Padronização de Código**: Utilização de **ESLint**, **Prettier** e **Husky** para garantir a qualidade, consistência e padronização do código, além de hooks de pre-commit com **Lint-staged** para validação automática antes de cada commit.
+* **Data Validation**: **Zod** is used for schema validation, ensuring that data received and processed by the API is always in the expected format, avoiding failures and inconsistencies.
 
-* **Deploy**: Realizado via **Render**, aproveitando o suporte a containers e aplicações Node.js.
+* **API Documentation**: Automatically generated documentation using **Swagger**, facilitating understanding, integration, and testing of the API by other developers or services.
+
+* **Testing**: Testing strategy is based on **Jest** and **Supertest** for integration tests, ensuring that routes and business logic work as expected. The test environment uses table truncation before each suite, ensuring isolation between tests.
+
+* **Code Standardization**: Using **ESLint**, **Prettier**, and **Husky** to ensure code quality, consistency, and standardization, plus pre-commit hooks with **Lint-staged** for automatic validation before each commit.
+
+* **Deploy**: Performed via **Render**, taking advantage of support for containers and Node.js applications.
 
 ---
 
-## Scripts úteis
+## Useful Scripts
 
 ```bash
-# Ambiente de desenvolvimento
+# Development environment
 pnpm dev
 
-# Compilar o projeto
+# Compile the project
 pnpm build
 
-# Rodar a aplicação compilada
+# Run the compiled application
 pnpm start
 
-# Rodar Swagger para atualizar a documentação
+# Run Swagger to update documentation
 pnpm swagger
 
-# Rodar testes
+# Run tests
 pnpm test
 
-# Acessar o Prisma Studio
+# Access Prisma Studio
 pnpm studio
 ```
 
 ---
 
-## Como Rodar o Projeto Localmente
+## How to Run the Project Locally
 
-### Pré-requisitos
+### Prerequisites
 
 - Node.js 22+
-- PNPM (recomendado)
-- PostgreSQL local ou Docker
-- Docker (opcional)
+- PNPM (recommended)
+- Local PostgreSQL or Docker
+- Docker (optional)
 
-### 1. Clonar o repositório
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/WillianSantosC/buzzcreator-back.git
@@ -110,15 +113,15 @@ git clone https://github.com/WillianSantosC/buzzcreator-back.git
 cd buzzcreator-back
 ```
 
-### 2. Instalar dependências
+### 2. Install dependencies
 
 ```bash
 pnpm install
 ```
 
-### 3. Criar o arquivo `.env`
+### 3. Create the `.env` file
 
-Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+Create a `.env` file in the root of the project with the following content:
 
 ```env
 API_PORT=
@@ -134,16 +137,16 @@ CLIENT_URL=
 DATABASE_URL="postgresql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}?schema=public"
 ```
 
-> Substitua os valores com as configurações corretas do seu ambiente.
+> Replace the values with your environment's correct configuration.
 
-### 4. Gerar os arquivos do Prisma e rodar as migrações
+### 4. Generate Prisma files and run migrations
 
 ```bash
 pnpm prisma generate
 pnpm prisma migrate dev
 ```
 
-### 5. Iniciar a aplicação
+### 5. Start the application
 
 ```bash
 pnpm dev
@@ -151,25 +154,25 @@ pnpm dev
 
 ---
 
-## Rodando os Testes
+## Running the Tests
 
 ```bash
-# Executar todos os testes
+# Run all tests
 NODE_ENV=test; pnpm test
 ```
 
 ---
 
-## Rodando com Docker (Opcional)
+## Running with Docker (Optional)
 
-### 1. Requisitos
+### 1. Requirements
 
-- Docker instalado
-- Variáveis de ambiente setadas corretamente
+- Docker installed
+- Environment variables set correctly
 
-### 2. Variáveis de ambiente para rodar a aplicação
+### 2. Environment variables to run the application
 
-Configure as seguintes variáveis:
+Configure the following variables:
 
 ```env
 DB_PORT=5432
@@ -178,13 +181,13 @@ DB_PASSWORD=postgres
 DB_NAME=buzzcreator
 ```
 
-Exemplo de uso na variável `DATABASE_URL`:
+Example usage in the `DATABASE_URL` variable:
 
 ```env
 DATABASE_URL="postgresql://postgres:postgres@db:5432/buzzcreator?schema=public"
 ```
 
-### 3. Suba os containers
+### 3. Start the containers
 
 ```bash
 docker-compose up -d
@@ -192,9 +195,9 @@ docker-compose up -d
 
 ---
 
-## Autenticação
+## Authentication
 
-### Login de administrador
+### Admin Login
 
 - Endpoint: `POST /admin/login`
 - Payload:
@@ -206,15 +209,15 @@ docker-compose up -d
 }
 ```
 
-### Observação
+### Note
 
-> **Para fins de simplicidade e foco na lógica do sistema, a autenticação do administrador foi implementada com dados mockados. Em produção, ela seria substituída por um sistema com persistência, hashing de senha e etc.**
+> **For simplicity and focus on core system logic, admin authentication was implemented with mocked data. In production, it would be replaced by a system with persistence, password hashing, etc.**
 
 ---
 
-## Documentação da API
+## API Documentation
 
-A documentação é gerada automaticamente com Swagger e pode ser acessada em:
+The documentation is automatically generated with Swagger and can be accessed at:
 
 ```
 GET /docs
@@ -224,7 +227,7 @@ GET /docs
 
 ## Deploy
 
-O deploy deste projeto foi feito na plataforma **Render**.
+This project was deployed on the **Render** platform.
 
-🔗 Acesse a aplicação em produção:
+🔗 Access the production application:
 **[https://buzzcreator-back.onrender.com](#)**
